@@ -1,0 +1,20 @@
+extends layout
+
+block content
+	h1= title
+	form#formAddUser(name="adduser",method="post",action="/adduser")
+		table
+			tr
+				td
+					label(for='username') UserName
+				td
+					input(name="username",id="userName",type="text",label="asasa")
+			tr
+				td
+					label(for='useremail') Email
+				td
+					input(name="email",id='useremail',type="text")
+			tr
+				td
+					button#btnSubmit(type="submit") submit
+					
