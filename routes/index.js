@@ -57,4 +57,15 @@ router.post('/adduser', function(req, res) {
         }
     });
 });
+
+router.get('/home',function(req,res){
+	res.render("home",{title:'Home'});
+});
+
+router.post('/login',function(req,res){
+	console.log("Login page");
+	res.location("home");
+	res.redirect("home");
+});
+
 module.exports = router;
