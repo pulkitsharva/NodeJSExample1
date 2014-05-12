@@ -2,5 +2,7 @@ extends layout
 	
 block content
 	h1=title
-	h1.
-		User List
+	ul
+		each admin, i in adminList
+			li
+				h1=admin.userId

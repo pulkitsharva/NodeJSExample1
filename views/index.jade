@@ -4,17 +4,18 @@ block content
 	center
 		h1 Login
 		form#formLogin(name="loginForm",method="post",action="/login")
+			h2=message
 			table
 				tr
 					td
 						label UserID
 					td
-						input(name="userID",type="text",placeholder="UserID")
+						input(name="userId",type="text",placeholder="UserID",required=true)
 				tr
 					td
 						label Password
 					td
-						input(name="userPassword",type="password",placeholder="Password")
+						input(name="userPassword",type="password",placeholder="Password",required=true)
 				tr
 					td
 					td

@@ -14,7 +14,7 @@ router.get('/helloworld', function(req, res) {
 router.get('/userlist', function(req, res) {
     var db = req.db;
     var collection = db.get('myData');
-	collection.find(function(e,docs){
+	collection.find({},{},function(e,docs){
         res.render('userList', {
             "userlist" : docs
 		});
@@ -63,9 +63,34 @@ router.get('/home',function(req,res){
 });
 
 router.post('/login',function(req,res){
-	console.log("Login page");
-	res.location("home");
-	res.redirect("home");
+	try
+	{
+		var db=req.db;
+		var collection=db.get('login');
+		console.log("going to execute query");
+		collection.find({"userId":req.body.userId,"password":req.body.userPassword},{},function(e,list)
+		{
+		console.log("List length:"+list.length);
+			if(list.length==1)
+			{
+				res.render("home", {
+					"adminList" : list,
+				});
+			}
+			else
+			{
+				res.render("index",{"message":"Wrong UserID or Password....."});
+				res.redirect("/");
+			}
+			
+		});
+		console.log("Login page");
+	}
+	catch(ex)
+	{
+		console.log("Error:"+ex);
+		callback(ex);
+	}
 });
 
 module.exports = router;
